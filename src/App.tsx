@@ -52,11 +52,11 @@ function App() {
           </div>
           <div className='flex flex-col gap-2'>
             <h5>Аудармашы</h5>
-            <span>Нұрхаят Талғатқызы</span>
+            <span>Талгаткызы Нурхаят</span>
           </div>
           <div className='flex flex-col gap-2'>
             <h5>Редактор</h5>
-            <span>Сая Итеғұлова</span>
+            <span>Итеғұлова Сая</span>
           </div>
           <button type="button" onClick={downloadBook} className="block font-bold text-md w-full md:w-min text-white bg-blue-700 hover:bg-blue-800 rounded-lg text-sm py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 px-12">Жүктеу</button>
         </div>
