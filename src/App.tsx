@@ -48,8 +48,7 @@ function App() {
           </div>
           <div className='flex flex-col gap-2'>
             <h5>Кітап туралы</h5>
-            <span>Competitive Programmer's Handbook is a modern introduction to competitive programming.
-              The book discusses programming tricks and algorithm design techniques relevant in competitive programming.</span>
+            <span>Спорттық бағдарламалау нұсқаулығы – спорттық бағдарламалауға заманауи кіріспе. Кітапта спорттық бағдарламалауға қатысты тәсілдерімен алгоритмді жобалау әдістері талқыланады.</span>
           </div>
           <div className='flex flex-col gap-2'>
             <h5>Аудармашы</h5>
