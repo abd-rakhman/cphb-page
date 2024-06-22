@@ -43,7 +43,7 @@ function App() {
             <h5>Автор</h5>
             <div className='flex flex-row gap-4 items-center justify-center md:justify-start'>
               <img src={AnttiLaaksonen} alt="Antti Laaksonen" width="50" height="50" className="rounded-full" />
-              <span>Антти Лаксонен</span>
+              <span>Антти Лаaксонен</span>
             </div>
           </div>
           <div className='flex flex-col gap-2'>
@@ -52,11 +52,11 @@ function App() {
           </div>
           <div className='flex flex-col gap-2'>
             <h5>Аудармашы</h5>
-            <span>Исмаил Әбдірахман</span>
+            <span>Нұрхаят Талғатқызы</span>
           </div>
           <div className='flex flex-col gap-2'>
             <h5>Редактор</h5>
-            <span>Айдос Абай</span>
+            <span>Сая Итеғұлова</span>
           </div>
           <button type="button" onClick={downloadBook} className="block font-bold text-md w-full md:w-min text-white bg-blue-700 hover:bg-blue-800 rounded-lg text-sm py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 px-12">Жүктеу</button>
         </div>
