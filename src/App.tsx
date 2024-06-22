@@ -1,8 +1,35 @@
 import './App.css'
 import bookCover from './assets/cphb-cover.jpg'
 import AnttiLaaksonen from './assets/antti_laaksonen.jpeg'
+import { useCallback } from 'react'
+
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL as string;
 
 function App() {
+
+  const downloadBook = useCallback(() => {
+    const uri = `${BACKEND_URL}/download`
+    fetch(uri, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/pdf',
+      },
+    })
+      .then((response) => response.blob())
+      .then((blob) => {
+        const url = window.URL.createObjectURL(new Blob([blob]));
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', 'cphb.pdf');
+        document.body.appendChild(link);
+        link.click();
+        link.parentNode?.removeChild(link);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  }, [])
+
   return (
     <>
       <div className='flex flex-col md:flex-row gap-4'>
@@ -24,7 +51,15 @@ function App() {
             <span>Competitive Programmer's Handbook is a modern introduction to competitive programming.
               The book discusses programming tricks and algorithm design techniques relevant in competitive programming.</span>
           </div>
-          <button type="button" className="block font-bold text-md w-full md:w-min text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 px-12">Жүктеу</button>
+          <div className='flex flex-col gap-2'>
+            <h5>Аудармашы</h5>
+            <span>Исмаил Әбдірахман</span>
+          </div>
+          <div className='flex flex-col gap-2'>
+            <h5>Редактор</h5>
+            <span>Айдос Абай</span>
+          </div>
+          <button type="button" onClick={downloadBook} className="block font-bold text-md w-full md:w-min text-white bg-blue-700 hover:bg-blue-800 rounded-lg text-sm py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 px-12">Жүктеу</button>
         </div>
       </div>
     </>
@@ -32,3 +67,4 @@ function App() {
 }
 
 export default App
+
