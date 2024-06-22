@@ -1,35 +1,12 @@
 import './App.css'
 import bookCover from './assets/cphb-cover.jpg'
 import AnttiLaaksonen from './assets/antti_laaksonen.jpeg'
-import { useCallback } from 'react'
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL as string;
+const downloadURI = `${BACKEND_URL}/file`;
 
 function App() {
-
-  const downloadBook = useCallback(() => {
-    const uri = `${BACKEND_URL}/download`
-    fetch(uri, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/pdf',
-      },
-    })
-      .then((response) => response.blob())
-      .then((blob) => {
-        const url = window.URL.createObjectURL(new Blob([blob]));
-        const link = document.createElement('a');
-        link.href = url;
-        link.setAttribute('download', 'cphb.pdf');
-        document.body.appendChild(link);
-        link.click();
-        link.parentNode?.removeChild(link);
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
-  }, [])
-
+  console.log(downloadURI);
   return (
     <>
       <div className='flex flex-col md:flex-row gap-4'>
@@ -58,7 +35,7 @@ function App() {
             <h5>Редактор</h5>
             <span>Итеғұлова Сая</span>
           </div>
-          <button type="button" onClick={downloadBook} className="block font-bold text-md w-full md:w-min text-white bg-blue-700 hover:bg-blue-800 rounded-lg text-sm py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 px-12">Жүктеу</button>
+          <a type="button" href={downloadURI} download className="block font-bold text-md w-full md:w-min text-white bg-blue-700 hover:bg-blue-800 rounded-lg text-sm py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 px-12">Жүктеу</a>
         </div>
       </div>
     </>
