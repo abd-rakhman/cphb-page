@@ -20,20 +20,20 @@ function App() {
             <h5>Автор</h5>
             <div className='flex flex-row gap-4 items-center justify-center md:justify-start'>
               <img src={AnttiLaaksonen} alt="Antti Laaksonen" width="50" height="50" className="rounded-full" />
-              <span>Антти Лаaксонен</span>
+              <span>Лаaксонен Антти</span>
             </div>
           </div>
           <div className='flex flex-col gap-2'>
             <h5>Кітап туралы</h5>
-            <span>Спорттық бағдарламалау нұсқаулығы – спорттық бағдарламалауға заманауи кіріспе. Кітапта спорттық бағдарламалауға қатысты тәсілдерімен алгоритмді жобалау әдістері талқыланады.</span>
-          </div>
-          <div className='flex flex-col gap-2'>
-            <h5>Аудармашы</h5>
-            <span>Талгаткызы Нурхаят</span>
+            <span>Спорттық бағдарламалау нұсқаулығы – спорттық бағдарламалауға заманауи кіріспе. Кітапта спорттық бағдарламалауға қатысты тәсілдері мен алгоритмді жобалау әдістері талқыланады.</span>
           </div>
           <div className='flex flex-col gap-2'>
             <h5>Редактор</h5>
             <span>Итеғұлова Сая</span>
+          </div>
+          <div className='flex flex-col gap-2'>
+            <h5>Аудармашы</h5>
+            <span>Талгаткызы Нурхаят</span>
           </div>
           <a type="button" href={downloadURI} download className="block font-bold text-md w-full md:w-min text-white bg-blue-700 hover:bg-blue-800 rounded-lg text-sm py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 px-12">Жүктеу</a>
         </div>
