@@ -15,7 +15,8 @@ function App() {
   useEffect(() => {
     if (withCounter) {
       fetch(`${BACKEND_URL}/downloads`).then(res => res.json()).then(data => {
-        setDownloadCount(data.count)
+        console.log(data)
+        setDownloadCount(data)
       })
     }
   }, [withCounter])
