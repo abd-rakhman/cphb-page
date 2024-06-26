@@ -1,12 +1,25 @@
 import './App.css'
 import bookCover from './assets/cphb-cover.jpg'
 import AnttiLaaksonen from './assets/antti_laaksonen.jpeg'
+import { useEffect, useMemo, useState } from 'react';
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL as string;
 const downloadURI = `${BACKEND_URL}/file`;
 
 function App() {
-  console.log(downloadURI);
+  const queryParams = new URLSearchParams(window.location.search)
+  const withCounter = queryParams.get('withCounter') !== null
+  const [downloadCount, setDownloadCount] = useState<number | undefined>(undefined)
+  console.log(window.location.search, 'withCounter', withCounter)
+
+  useEffect(() => {
+    if (withCounter) {
+      fetch(`${BACKEND_URL}/downloads`).then(res => res.json()).then(data => {
+        setDownloadCount(data.count)
+      })
+    }
+  }, [withCounter])
+
   return (
     <>
       <div className='flex flex-col md:flex-row gap-4'>
@@ -35,7 +48,10 @@ function App() {
             <h5>Аудармашы</h5>
             <span>Талгаткызы Нурхаят</span>
           </div>
-          <a type="button" href={downloadURI} download className="block font-bold text-md w-full md:w-min text-white bg-blue-700 hover:bg-blue-800 rounded-lg text-sm py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 px-12">Жүктеу</a>
+          <div className='flex flex-col md:flex-row gap-2 items-center'>
+            <a type="button" href={downloadURI} download className="block font-bold text-md w-full md:w-min text-white bg-blue-700 hover:bg-blue-800 rounded-lg text-sm py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 px-12">Жүктеу</a>
+            {withCounter && downloadCount && <span>Жүктеу саны: {downloadCount}</span>}
+          </div>
         </div>
       </div>
     </>
