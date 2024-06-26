@@ -10,12 +10,10 @@ function App() {
   const queryParams = new URLSearchParams(window.location.search)
   const withCounter = queryParams.get('withCounter') !== null
   const [downloadCount, setDownloadCount] = useState<number | undefined>(undefined)
-  console.log(window.location.search, 'withCounter', withCounter)
 
   useEffect(() => {
     if (withCounter) {
       fetch(`${BACKEND_URL}/downloads`).then(res => res.json()).then(data => {
-        console.log(data)
         setDownloadCount(data)
       })
     }
