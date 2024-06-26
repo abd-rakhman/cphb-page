@@ -1,7 +1,7 @@
 import './App.css'
 import bookCover from './assets/cphb-cover.jpg'
 import AnttiLaaksonen from './assets/antti_laaksonen.jpeg'
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL as string;
 const downloadURI = `${BACKEND_URL}/file`;
