@@ -2,6 +2,8 @@ import './App.css'
 import bookCover from './assets/cphb-cover.jpg'
 import AnttiLaaksonen from './assets/antti_laaksonen.jpeg'
 import { useEffect, useState } from 'react';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css'
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL as string;
 const downloadURI = `${BACKEND_URL}/file`;
@@ -10,11 +12,14 @@ function App() {
   const queryParams = new URLSearchParams(window.location.search)
   const withCounter = queryParams.get('withCounter') !== null
   const [downloadCount, setDownloadCount] = useState<number | undefined>(undefined)
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     if (withCounter) {
       fetch(`${BACKEND_URL}/downloads`).then(res => res.json()).then(data => {
         setDownloadCount(data)
+      }).finally(() => {
+        setIsLoading(false)
       })
     }
   }, [withCounter])
@@ -49,7 +54,8 @@ function App() {
           </div>
           <div className='flex flex-col md:flex-row gap-2 items-center'>
             <a type="button" href={downloadURI} download className="block font-bold text-md w-full md:w-min text-white bg-blue-700 hover:bg-blue-800 rounded-lg text-sm py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 px-12">Жүктеу</a>
-            {withCounter && downloadCount && <span>Жүктеу саны: {downloadCount}</span>}
+            {withCounter &&
+              (isLoading ? <Skeleton width={120} height={32} /> : <span>Жүктеу саны: {downloadCount}</span>)}
           </div>
         </div>
       </div>
